@@ -33,7 +33,8 @@ public class MarkerModel {
     public static final int TYPE_SANDBOX = 5;
     public static final int TYPE_OFFICEHOURS = 6;
     public static final int TYPE_MISC = 7;
-    public static final int TYPE_MOSCONE = 8;
+    public static final int TYPE_OSLOSPEKTRUM = 8
+            ;
     public static final int TYPE_BOOTH = 9;
     public static final int TYPE_LOCATION = 10;
 

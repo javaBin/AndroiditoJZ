@@ -258,9 +258,9 @@ public abstract class MapInfoFragment extends Fragment
         mList.setVisibility(View.GONE);
     }
 
-    public void showMoscone() {
-        setHeader(MapUtils.getRoomIcon(MarkerModel.TYPE_MOSCONE), R.string.map_moscone,
-                R.string.map_moscone_address);
+    public void showOsloSpektrum() {
+        setHeader(MapUtils.getRoomIcon(MarkerModel.TYPE_OSLOSPEKTRUM), R.string.map_oslospektrum,
+                R.string.map_spektrum_address);
         mList.setVisibility(View.GONE);
     }
 

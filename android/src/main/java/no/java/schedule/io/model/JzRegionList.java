@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class JzRegionList {
@@ -13,7 +14,6 @@ public class JzRegionList {
 
     @SerializedName("regions")
     private ArrayList<JzBeaconRegion> regions;
-
     public ArrayList<JzBeaconRegion> getRegions() {
         return regions;
     }

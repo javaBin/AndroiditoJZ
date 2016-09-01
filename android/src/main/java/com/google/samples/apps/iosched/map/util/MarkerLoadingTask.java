@@ -72,7 +72,7 @@ public class MarkerLoadingTask extends AsyncTaskLoader<List<MarkerLoadingTask.Ma
                     marker = MapUtils.createLabelMarker(labelIconGenerator, id, position, label);
                 } else if (type != MarkerModel.TYPE_INACTIVE) {
                     // All other markers (that are not inactive) contain a pin icon
-                    marker = MapUtils.createPinMarker(id, position);
+                    marker = MapUtils.createFloorMarkers(id, floor, position);
                 }
 
                 MarkerModel model = new MarkerModel(id, floor, type, label, null);

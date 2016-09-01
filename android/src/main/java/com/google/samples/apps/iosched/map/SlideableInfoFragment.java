@@ -129,13 +129,13 @@ public class SlideableInfoFragment extends MapInfoFragment {
         mLayout.setTouchEnabled(false);
     }
 
-    public void showMoscone() {
+    public void showOsloSpektrum() {
         // Set up panel: collapsed with moscone height
         mLayout.setPanelHeight(mHeightMoscone);
         mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
         mLayout.setTouchEnabled(false);
 
-        super.showMoscone();
+        super.showOsloSpektrum();
     }
 
     @Override

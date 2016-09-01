@@ -5,12 +5,23 @@
     android:layout_height="match_parent"
     android:background="@color/primary"
     android:orientation="vertical">
-    <Expo.Droid.View.WrappedViewPager
+    <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
         android:layout_above="@+id/initial_button_bottom"/>
+    <Expo.Droid.View.Indicator.CirclePageIndicator
+        android:id="@+id/indicator"
+        android:padding="@dimen/default_margin"
+        android:layout_margin="@dimen/default_margin"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/initial_button_bottom"
+        android:gravity="center"/>
     <RelativeLayout
         android:id="@+id/initial_button_bottom"
         android:layout_width="match_parent"
@@ -27,12 +38,6 @@
             android:layout_weight="1"
             android:layout_alignParentLeft="true"
             android:text="@string/Initial_Skip" />
-        <Expo.Droid.View.Indicator.CirclePageIndicator
-            android:id="@+id/indicator"
-            android:padding="10dip"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:gravity="center"/>
         <TextView
             android:id="@+id/initial_next_button"
             style="@style/TextButton"

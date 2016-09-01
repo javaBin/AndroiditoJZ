@@ -427,10 +427,10 @@
     <string name="map_touch_to_see_session">Touch to see Sessions</string>
 
     <!-- Label of info screen title for Moscone Center at a lower zoom level -->
-    <string name="map_moscone" translatable="false">Moscone Center</string>
+    <string name="map_oslospektrum" translatable="false">Oslo Spektrum</string>
 
     <!-- Address of Moscone Center. Shown together with its name. -->
-    <string name="map_moscone_address" translatable="false">747 Howard St,\nSan Francisco,\nCA 94103</string>
+    <string name="map_spektrum_address" translatable="false">Sonja Henies plass 2,\n 0185 Oslo\n</string>
 
     <!-- Button to view more Videos or sessions from the videos/sessions card view. -->
     <string name="more_items_button">More</string>
@@ -1102,9 +1102,9 @@ user updates the rating. -->
     <string name="schedule_block_title_keynote">Keynote</string>
     <string name="downloading_sessions_text">Downloading Sessions Please Wait...</string>
     <string name="navview_menu_item_beta">Beta</string>
-    <string name="map_floor1_text">Floor 1</string>
-    <string name="map_floor2_text">Floor 2</string>
-    <string name="map_floor3_text">Floor 3</string>
+    <string name="map_floor1_text">1</string>
+    <string name="map_floor2_text">2</string>
+    <string name="map_floor3_text">3</string>
     <string name="feedback_comment_text">Any other comments?</string>
 
 

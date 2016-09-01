@@ -68,8 +68,8 @@ public class MapUtils {
             return MarkerModel.TYPE_OFFICEHOURS;
         } else if (tags.contains("MISC")) {
             return MarkerModel.TYPE_MISC;
-        } else if (tags.contains("MOSCONE")) {
-            return MarkerModel.TYPE_MOSCONE;
+        } else if (tags.contains("OSLO")) {
+            return MarkerModel.TYPE_OSLOSPEKTRUM;
         } else if (tags.contains("INACTIVE")) {
             return MarkerModel.TYPE_INACTIVE;
         } else if(tags.contains("booth")) {
@@ -99,7 +99,7 @@ public class MapUtils {
                 return R.drawable.ic_map_officehours;
             case MarkerModel.TYPE_MISC:
                 return R.drawable.ic_map_misc;
-            case MarkerModel.TYPE_MOSCONE:
+            case MarkerModel.TYPE_OSLOSPEKTRUM:
                 return R.drawable.ic_map_moscone;
             default:
                 return R.drawable.ic_map_pin;
@@ -148,6 +148,14 @@ public class MapUtils {
     }
 
     public static MarkerOptions createFloorMarkers(String id, int floorLevel, LatLng position) {
+        final BitmapDescriptor icon =
+                BitmapDescriptorFactory.defaultMarker(createFloorColor(floorLevel));
+        return new MarkerOptions().position(position).title(id).icon(icon).anchor(0.5f, 0.85526f)
+                .visible(
+                        false);
+    }
+
+    public static float createFloorColor(int floorLevel) {
         float marker = 0;
         switch(floorLevel) {
             case 0:
@@ -156,17 +164,12 @@ public class MapUtils {
             case 1:
                 marker = BitmapDescriptorFactory.HUE_YELLOW;
                 break;
-            case 3:
-                marker = BitmapDescriptorFactory.HUE_ORANGE;
+            case 2:
+                marker = BitmapDescriptorFactory.HUE_VIOLET;
                 break;
         }
 
-
-        final BitmapDescriptor icon =
-                BitmapDescriptorFactory.defaultMarker(marker);
-        return new MarkerOptions().position(position).title(id).icon(icon).anchor(0.5f, 0.85526f)
-                .visible(
-                        false);
+        return marker;
     }
 
     public static MarkerOptions createCurrentLocationMarker(String id, LatLng position) {

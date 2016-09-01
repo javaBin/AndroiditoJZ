@@ -68,6 +68,7 @@ public class MapActivity extends BaseActivity
     private Button mFloor1Button;
     private Button mFloor2Button;
     private Button mFloor3Button;
+    private Button mFloorAllButton;
 
     private View mInfoContainer;
 
@@ -86,22 +87,29 @@ public class MapActivity extends BaseActivity
 
         setContentView(R.layout.map_act);
         mInfoContainer = findViewById(R.id.map_detail_popup);
+        mFloorAllButton = (Button)findViewById(R.id.allfloors_button);
         mFloor1Button = (Button)findViewById(R.id.floor1_button);
         mFloor2Button = (Button)findViewById(R.id.floor2_button);
         mFloor3Button = (Button) findViewById(R.id.floor3_button);
 
+        mFloorAllButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mMapFragment.showAllFloors();
+            }
+        });
 
         mFloor1Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mMapFragment.switchFloors(0);
+                mMapFragment.showMarkersForSpecificFloor(0);
             }
         });
 
         mFloor2Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mMapFragment.switchFloors(1);
+                mMapFragment.showMarkersForSpecificFloor(1);
 
             }
         });
@@ -109,7 +117,7 @@ public class MapActivity extends BaseActivity
         mFloor3Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mMapFragment.switchFloors(2);
+                mMapFragment.showMarkersForSpecificFloor(2);
 
             }
         });
@@ -252,7 +260,7 @@ public class MapActivity extends BaseActivity
     @Override
     public void onInfoShowOsloSpektrum() {
         if (mInfoFragment != null) {
-            mInfoFragment.showMoscone();
+            mInfoFragment.showOsloSpektrum();
         }
         setTabletInfoVisibility(View.VISIBLE);
 

@@ -2,7 +2,7 @@
   "UUID": "E0B83F9E-4838-E761-B0D7-293A763DEBF2",
   "regions": [
     {
-      "name": "region 1",
+      "name": "Room 1",
       "level" : 0,
       "type" : "session",
       "description": "Room 1",
@@ -13,7 +13,7 @@
       "major": 14441
     },
     {
-      "name": "region 2",
+      "name": "Room 2",
       "level" : 0,
       "type" : "session",
       "description": "Room 2",
@@ -24,7 +24,7 @@
       "major": 36049
     },
     {
-      "name": "region 3",
+      "name": "Room 3",
       "level" : 0,
       "type" : "session",
       "description": "Room 3",
@@ -35,7 +35,7 @@
       "major": 61068
     },
     {
-      "name": "region 4",
+      "name": "Room 4",
       "level" : 1,
       "type" : "session",
       "description": "Room 4",
@@ -46,7 +46,7 @@
       "major": 12345
     },
     {
-      "name": "region 5",
+      "name": "Room 5",
       "level" : 1,
       "type" : "session",
       "description": "Room 5",
@@ -57,7 +57,7 @@
       "major": 12345
     },
     {
-      "name": "region 6",
+      "name": "Room 6",
       "level" : 1,
       "type" : "session",
       "description": "Room 6",
@@ -68,7 +68,7 @@
       "major": 12345
     },
     {
-      "name": "region 7",
+      "name": "Room 7",
       "level" : 2,
       "type" : "session",
       "description": "Room 7",
@@ -79,7 +79,7 @@
       "major": 12345
     },
     {
-      "name": "region 8",
+      "name": "Room 8",
       "level" : 2,
       "type" : "session",
       "description": "Room 8",
@@ -90,7 +90,7 @@
       "major": 12345
     },
     {
-      "name": "region 10",
+      "name": "Region javaBin",
       "level" : 0,
       "type" : "booth",
       "description": "javaBin Stand",
@@ -101,7 +101,7 @@
       "major": 12345
     },
     {
-      "name": "region 20",
+      "name": "Region Main Entrance",
       "level" : 1,
       "type" : "booth",
       "description": "Main Entrance",

@@ -117,7 +117,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
 
     private Marker mActiveMarker = null;
     private BitmapDescriptor ICON_ACTIVE;
-    private BitmapDescriptor ICON_NORMAL;
+    private ArrayList<BitmapDescriptor> mFloorIcons = new ArrayList<>();
 
     private boolean mAtOsloSpektrum = false;
     private Marker mOsloSpektrumMarker = null;
@@ -127,6 +127,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
 
     private String mHighlightedRoomName = null;
     private MarkerModel mHighlightedRoom = null;
+    private final static int mNumberFloors = 3;
 
     private int mInitialFloor = OSLOSPEKTRUM_DEFAULT_LEVEL_INDEX;
 
@@ -180,7 +181,6 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
 
     public static MapFragment newInstance(String highlightedRoomName) {
         MapFragment fragment = new MapFragment();
-
         Bundle arguments = new Bundle();
         arguments.putString(EXTRAS_HIGHLIGHT_ROOM, highlightedRoomName);
         fragment.setArguments(arguments);
@@ -240,8 +240,6 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
         mDPI = getActivity().getResources().getDisplayMetrics().densityDpi / 160f;
 
         ICON_ACTIVE = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE);
-        ICON_NORMAL =
-                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE);
 
 
         // Get the arguments and restore the highlighted room or displayed floor.
@@ -276,7 +274,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
     public void onResume() {
         super.onResume();
 
-        if(!NetworkUtil.isGpsOn(getActivity())) {
+        if (!NetworkUtil.isGpsOn(getActivity())) {
             createGpsDialog().show();
         }
         if (!NetworkUtil.isBluetoothOn(getActivity())) {
@@ -284,11 +282,18 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
         } else {
             mEstimoteBeaconManager.startMonitorEstimoteBeacons(getActivity());
         }
+
+        if(mFloorIcons.isEmpty()) {
+            for (int i = 0; i < mNumberFloors; i++) {
+                mFloorIcons.add(BitmapDescriptorFactory
+                        .defaultMarker(MapUtils.createFloorColor(i)));
+            }
+        }
     }
 
     public void placeMarkerLocationOnCurrentRegion(Coordinates coordinates) {
         LatLng beaconRegionLatLng = new LatLng(coordinates.getLatitude(), coordinates.getLongitude());
-        if(mCurrentLocationMarker != null) {
+        if (mCurrentLocationMarker != null) {
             mCurrentLocationMarker.remove();
             mCurrentLocationMarker = null;
         }
@@ -418,14 +423,13 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
         mMap.setOnIndoorStateChangeListener(this);
         mMap.setOnMapClickListener(this);
 
-        mMap.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
+        mMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
             @Override
-            public void onCameraMove() {
-                if(mMap.getCameraPosition().zoom <= DETAILED_MAP_ZOOM_THRESHOLD) {
-                    setFloorElementsVisible(mFloor, false);
+            public void onCameraIdle() {
+                if (mMap.getCameraPosition().zoom <= DETAILED_MAP_ZOOM_THRESHOLD) {
+                    showMarkersForAllFloors(false);
                     mOsloSpektrumMarker.setVisible(true);
-                }
-                else {
+                } else {
                     setFloorElementsVisible(mFloor, true);
                     mOsloSpektrumMarker.setVisible(false);
                 }
@@ -443,8 +447,19 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
         setupMap(true);
     }
 
+    public void showMarkersForAllFloors(boolean visible) {
+        for (int i = 0; i < mNumberFloors; i++) {
+            final ArrayList<Marker> markers = mMarkersFloor.get(i);
+            if (markers != null) {
+                for (Marker m : markers) {
+                    m.setVisible(visible);
+                }
+            }
+        }
+    }
+
     private void setupMap(boolean resetCamera) {
-        switchFloors(1);
+        showMarkersForAllFloors(true);
         mOsloSpektrumMarker = mMap
                 .addMarker(MapUtils.createOsloSpektrumMarker(OSOLOSPEKTRUM).visible(false));
 
@@ -584,20 +599,16 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
         mCallbacks.onInfoShowOsloSpektrum();
     }
 
-    private void onFocusOsloSpektrum() {
+    private void onFocusHighlightedRoom() {
         // Highlight a room if argument is set and it exists, otherwise show the default floor
         if (mHighlightedRoomName != null && mMarkers.containsKey(mHighlightedRoomName)) {
             highlightRoom(mHighlightedRoomName);
-            showFloorIndex(mHighlightedRoom.floor);
+            showMarkersForAllFloors(false);
+            setFloorElementsVisible(mHighlightedRoom.floor, true);
+            selectActiveMarker(mHighlightedRoom.marker);
             // Reset highlighted room because it has just been displayed.
             mHighlightedRoomName = null;
-        } else {
-            // Hide the bottom sheet that is displaying the Oslo Spektrum details at this point
-            mCallbacks.onInfoHide();
-            // Switch to the default level for Oslo Spektrum and reset its value
-            showFloorIndex(mInitialFloor);
         }
-        mInitialFloor = OSLOSPEKTRUM_DEFAULT_LEVEL_INDEX;
     }
 
     @Override
@@ -613,7 +624,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
         if (!mAtOsloSpektrum && building != null && building.equals(mOsloSpektrumBuilding)) {
             // Map is focused on Oslo Spektrum Center
             mAtOsloSpektrum = true;
-            onFocusOsloSpektrum();
+            onFocusHighlightedRoom();
         } else if (mAtOsloSpektrum && mOsloSpektrumBuilding != null && !mOsloSpektrumBuilding.equals(building)) {
             // Map is no longer focused on Oslo Spektrum Center
             mAtOsloSpektrum = false;
@@ -660,7 +671,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
 
     private void deselectActiveMarker() {
         if (mActiveMarker != null) {
-            mActiveMarker.setIcon(ICON_NORMAL);
+            mActiveMarker.setIcon(mFloorIcons.get(mFloor));
             mActiveMarker = null;
         }
     }
@@ -684,7 +695,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
 
         deselectActiveMarker();
 
-        if(marker.equals(mCurrentLocationMarker)) {
+        if (marker.equals(mCurrentLocationMarker)) {
             mCallbacks.onInfoShowTitle(marker.getTitle(), MarkerModel.TYPE_SESSION);
         }
 
@@ -726,7 +737,6 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
         MarkerModel m = mMarkers.get(roomId);
         if (m != null) {
             mHighlightedRoom = m;
-            showFloorIndex(m.floor);
         }
     }
 
@@ -758,22 +768,24 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
             if (mFloor > INVALID_FLOOR) {
                 setFloorElementsVisible(mFloor, true);
             }
+
+            onFocusHighlightedRoom();
         }
 
         enableMapElements();
     }
 
+    public void showAllFloors() {
+        showMarkersForAllFloors(true);
+    }
 
-    public void switchFloors(int floorLevel) {
-        if (mFloor == floorLevel) {
-            return;
-        }
+    public void showMarkersForSpecificFloor(int floorLevel) {
         if (mMap != null) {
             hideMarkersWhenSwitchingFloors();
         }
 
-        mFloor = floorLevel;
         deselectActiveMarker();
+        mFloor = floorLevel;
         mCallbacks.onInfoHide();
         setFloorElementsVisible(mFloor, true);
 

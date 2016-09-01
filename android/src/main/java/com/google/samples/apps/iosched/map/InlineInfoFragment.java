@@ -86,8 +86,8 @@ public class InlineInfoFragment extends MapInfoFragment {
     }
 
     @Override
-    public void showMoscone() {
-        super.showMoscone();
+    public void showOsloSpektrum() {
+        super.showOsloSpektrum();
         show();
     }
 

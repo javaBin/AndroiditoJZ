@@ -61,24 +61,37 @@ of the map.-->
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal">
+                <TextView
+                    android:layout_width="@dimen/button_size"
+                    android:layout_height="wrap_content"
+                    style="@style/TextSmall"
+                    android:textColor="@color/jz_orange"
+                    android:textStyle="bold"
+                    android:text="Floor"/>
+                <Button
+                    android:id="@+id/allfloors_button"
+                    style="@style/GeneralButtonStyle"
+                    android:layout_width="@dimen/button_size"
+                    android:layout_height="wrap_content"
+                    android:text="All" />
 
                 <Button
                     android:id="@+id/floor1_button"
                     style="@style/GeneralButtonStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/button_size"
                     android:layout_height="wrap_content"
                     android:text="@string/map_floor1_text" />
 
                 <Button
                     android:id="@+id/floor2_button"
                     style="@style/GeneralButtonStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/button_size"
                     android:layout_height="wrap_content"
                     android:text="@string/map_floor2_text" />
                 <Button
                     android:id="@+id/floor3_button"
                     style="@style/GeneralButtonStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/button_size"
                     android:layout_height="wrap_content"
                     android:text="@string/map_floor3_text" />
             </LinearLayout>

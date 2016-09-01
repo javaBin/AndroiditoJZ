@@ -36,7 +36,6 @@ public class EstimoteBeaconManager {
     private ArrayList<Region> mRegionList;
     private JzRegionList mJzRegionList;
     private Context mContext;
-    private HashMap<String, String[]> mRegionBeaconMapping;
     private String scanId;
     private static final String TAG = "EstimoteBeaconManager";
     private static final String RegionInfoJson = "regioninfo.json";
@@ -58,24 +57,19 @@ public class EstimoteBeaconManager {
             mRegionList = new ArrayList<>();
         }
 
-
-        if (mRegionBeaconMapping == null) {
-            mRegionBeaconMapping = new HashMap<>();
-        }
-
-
         // read json info
         try {
             String fileToJsonObj = JsonUtil.assetJSONFile(RegionInfoJson, mContext);
             mJzRegionList = new Gson().fromJson(fileToJsonObj, JzRegionList.class);
             if (mJzRegionList != null) {
                 for (int i = 0; i < mJzRegionList.getRegions().size(); i++) {
-                    JzBeaconRegion region = mJzRegionList.getRegions().get(i);
-                    mRegionList.add(new Region(region.getName(),
+                    JzBeaconRegion beaconRegion = mJzRegionList.getRegions().get(i);
+                    Region region = new Region(beaconRegion.getName(),
                             UUID.fromString(mJzRegionList.getUUID()),
-                            region.getMajor(),
-                            null));
-                    storeMarkerToDatabase(region);
+                            beaconRegion.getMajor(),
+                            null);
+                    mRegionList.add(region);
+                    storeMarkerToDatabase(beaconRegion);
                 }
             }
 
