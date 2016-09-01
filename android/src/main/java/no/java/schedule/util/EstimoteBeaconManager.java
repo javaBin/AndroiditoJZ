@@ -1,6 +1,5 @@
 package no.java.schedule.util;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.net.Uri;
@@ -11,15 +10,17 @@ import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Nearable;
 import com.estimote.sdk.Region;
 import com.estimote.sdk.repackaged.gson_v2_3_1.com.google.gson.Gson;
-import com.google.samples.apps.iosched.io.map.model.Marker;
 import com.google.samples.apps.iosched.map.MapFragment;
-import com.google.samples.apps.iosched.map.MapInfoFragment;
-import com.google.samples.apps.iosched.map.util.MarkerModel;
 import com.google.samples.apps.iosched.provider.ScheduleContract;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -59,8 +60,17 @@ public class EstimoteBeaconManager {
 
         // read json info
         try {
-            String fileToJsonObj = JsonUtil.assetJSONFile(RegionInfoJson, mContext);
-            mJzRegionList = new Gson().fromJson(fileToJsonObj, JzRegionList.class);
+
+            // Attempt to fetch from web
+            JzRegionList assetGson = parseJzRegionList(
+                    JsonUtil.assetJSONFile(RegionInfoJson, mContext)
+            );
+
+            JzRegionList onlineGson = parseJzRegionList(
+                    downloadOnlineConfig(new URL("\"https://java.no/android-app-resources/2016_regioninfo.json"))
+            );
+
+            mJzRegionList = onlineGson != null ? onlineGson : assetGson;
             if (mJzRegionList != null) {
                 for (int i = 0; i < mJzRegionList.getRegions().size(); i++) {
                     JzBeaconRegion beaconRegion = mJzRegionList.getRegions().get(i);
@@ -72,11 +82,56 @@ public class EstimoteBeaconManager {
                     storeMarkerToDatabase(beaconRegion);
                 }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private JzRegionList parseJzRegionList(String fileToJsonObj) {
+        try {
+            return new Gson().fromJson(fileToJsonObj, JzRegionList.class);
+        }  catch (com.estimote.sdk.repackaged.gson_v2_3_1.com.google.gson.JsonSyntaxException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    /**
+     * Return the text document at url, or null if not found
+     *
+     * @param url to fetch
+     * @return null or content of file.
+     */
+    private static String downloadOnlineConfig(URL url) {
+
+        try {
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setDoOutput(true);
+            connection.connect();
+
+            if (connection.getResponseCode() != 200) {
+                return null;
+            }
+
+            InputStream in = connection.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in, "utf-8"), 8);
+            StringBuilder builder = new StringBuilder();
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                builder.append(line).append("\n");
+            }
+
+            in.close();
+            return builder.toString();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return null;
     }
 
     private void storeMarkerToDatabase(JzBeaconRegion region) {
@@ -201,4 +256,7 @@ public class EstimoteBeaconManager {
 
         return null;
     }
+
+
+
 }
