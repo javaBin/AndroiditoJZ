@@ -780,6 +780,9 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
     }
 
     public void showMarkersForSpecificFloor(int floorLevel) {
+        if (mFloor == floorLevel) {
+            return;
+        }
         if (mMap != null) {
             hideMarkersWhenSwitchingFloors();
         }
