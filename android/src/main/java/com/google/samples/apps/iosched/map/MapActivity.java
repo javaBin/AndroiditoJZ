@@ -133,7 +133,7 @@ public class MapActivity extends BaseActivity
             public void onClick(View view) {
                 mMapFragment.showAllFloors(false);
                 mMapFragment.showMarkersForSpecificFloor(2);
-                mFloor3Button.setBackgroundColor(getColor(R.color.jz_darkred));
+                mFloor3Button.setBackgroundColor(getColor(android.R.color.darker_gray));
                 ResetColorButton(mFloorAllButton);
                 ResetColorButton(mFloor2Button);
                 ResetColorButton(mFloor1Button);
@@ -150,7 +150,7 @@ public class MapActivity extends BaseActivity
     }
 
     private void ResetColorButton(Button button) {
-        mFloorAllButton.setBackgroundColor(getColor(R.color.jz_yellow));
+        button.setBackgroundColor(getColor(R.color.jz_yellow));
     }
 
     @Override
