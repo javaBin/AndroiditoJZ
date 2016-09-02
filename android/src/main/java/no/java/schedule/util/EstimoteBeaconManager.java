@@ -66,11 +66,12 @@ public class EstimoteBeaconManager {
                     JsonUtil.assetJSONFile(RegionInfoJson, mContext)
             );
 
+            /*
             JzRegionList onlineGson = parseJzRegionList(
                     downloadOnlineConfig(new URL("\"https://java.no/android-app-resources/2016_regioninfo.json"))
-            );
+            ); */
 
-            mJzRegionList = onlineGson != null ? onlineGson : assetGson;
+            mJzRegionList = assetGson;
             if (mJzRegionList != null) {
                 for (int i = 0; i < mJzRegionList.getRegions().size(); i++) {
                     JzBeaconRegion beaconRegion = mJzRegionList.getRegions().get(i);
@@ -88,13 +89,7 @@ public class EstimoteBeaconManager {
     }
 
     private JzRegionList parseJzRegionList(String fileToJsonObj) {
-        try {
             return new Gson().fromJson(fileToJsonObj, JzRegionList.class);
-        }  catch (com.estimote.sdk.repackaged.gson_v2_3_1.com.google.gson.JsonSyntaxException e) {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
     /**

@@ -95,14 +95,14 @@ public class MapActivity extends BaseActivity
         mFloorAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mMapFragment.showAllFloors();
+                mMapFragment.showAllFloors(true);
             }
         });
 
         mFloor1Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mMapFragment.showAllFloors();
+                mMapFragment.showAllFloors(false);
                 mMapFragment.showMarkersForSpecificFloor(0);
             }
         });
@@ -110,7 +110,7 @@ public class MapActivity extends BaseActivity
         mFloor2Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mMapFragment.showAllFloors();
+                mMapFragment.showAllFloors(false);
                 mMapFragment.showMarkersForSpecificFloor(1);
 
             }
@@ -119,7 +119,7 @@ public class MapActivity extends BaseActivity
         mFloor3Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mMapFragment.showAllFloors();
+                mMapFragment.showAllFloors(false);
                 mMapFragment.showMarkersForSpecificFloor(2);
 
             }

@@ -775,8 +775,9 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
         enableMapElements();
     }
 
-    public void showAllFloors() {
-        showMarkersForAllFloors(true);
+    public void showAllFloors(boolean visible) {
+        mFloor = INVALID_FLOOR;
+        showMarkersForAllFloors(visible);
     }
 
     public void showMarkersForSpecificFloor(int floorLevel) {
