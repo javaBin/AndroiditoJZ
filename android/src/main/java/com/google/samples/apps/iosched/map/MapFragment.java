@@ -104,7 +104,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
     // Markers stored by id
     private HashMap<String, MarkerModel> mMarkers = new HashMap<>();
     // Markers stored by floor
-    private SparseArray<ArrayList<Marker>> mMarkersFloor =
+    private SparseArray<ArrayList<Marker>> mFloorMarkerMapping =
             new SparseArray<>(INITIAL_FLOOR_COUNT);
 
     // Screen DPI
@@ -404,7 +404,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
         }
 
         mMarkers.clear();
-        mMarkersFloor.clear();
+        mFloorMarkerMapping.clear();
 
         mFloor = INVALID_FLOOR;
     }
@@ -449,7 +449,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
 
     public void showMarkersForAllFloors(boolean visible) {
         for (int i = 0; i < mNumberFloors; i++) {
-            final ArrayList<Marker> markers = mMarkersFloor.get(i);
+            final ArrayList<Marker> markers = mFloorMarkerMapping.get(i);
             if (markers != null) {
                 for (Marker m : markers) {
                     m.setVisible(visible);
@@ -574,7 +574,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
     private void setFloorElementsVisible(int floor, boolean visible) {
         // Markers
 
-        final ArrayList<Marker> markers = mMarkersFloor.get(floor);
+        final ArrayList<Marker> markers = mFloorMarkerMapping.get(floor);
         if (markers != null) {
             for (Marker m : markers) {
                 m.setVisible(visible);
@@ -671,17 +671,13 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
 
     private void deselectActiveMarker() {
         if (mActiveMarker != null) {
-            mActiveMarker.setIcon(mFloorIcons.get(mFloor));
-            mActiveMarker = null;
+            mActiveMarker.setVisible(false);
         }
     }
 
-    private void selectActiveMarker(Marker marker) {
-        if (mActiveMarker == marker) {
-            return;
-        }
+        private void selectActiveMarker(Marker marker) {
         if (marker != null) {
-            mActiveMarker = marker;
+            mActiveMarker = mMap.addMarker(MapUtils.createFloorMarkers("selected", mFloor, marker.getPosition()).visible(true));
             mActiveMarker.setIcon(ICON_ACTIVE);
         }
     }
@@ -755,11 +751,11 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
                 model.marker = m;
 
                 // Store the marker and its model
-                ArrayList<Marker> markerList = mMarkersFloor.get(model.floor);
+                ArrayList<Marker> markerList = mFloorMarkerMapping.get(model.floor);
                 if (markerList == null) {
                     // Initialise the list of Markers for this floor
                     markerList = new ArrayList<>();
-                    mMarkersFloor.put(model.floor, markerList);
+                    mFloorMarkerMapping.put(model.floor, markerList);
                 }
                 markerList.add(m);
                 mMarkers.put(model.id, model);
@@ -788,9 +784,9 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
             hideMarkersWhenSwitchingFloors();
         }
 
-        deselectActiveMarker();
         mFloor = floorLevel;
         mCallbacks.onInfoHide();
+        deselectActiveMarker();
         setFloorElementsVisible(mFloor, true);
 
     }
