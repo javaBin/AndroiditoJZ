@@ -186,7 +186,10 @@ public class EstimoteBeaconManager {
 
     public void stopRanging() {
         // invoked in #onPause
-        mBeaconManager.stopRanging(mRegionList.get(0));
+        for (Region region : mRegionList) {
+            mBeaconManager.stopRanging(region);
+        }
+
         mScheduledExecutorService.shutdown();
     }
 
