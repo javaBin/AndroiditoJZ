@@ -96,6 +96,10 @@ public class MapActivity extends BaseActivity
             @Override
             public void onClick(View view) {
                 mMapFragment.showAllFloors(true);
+                mFloorAllButton.setBackgroundColor(getColor(android.R.color.darker_gray));
+                ResetColorButton(mFloor3Button);
+                ResetColorButton(mFloor2Button);
+                ResetColorButton(mFloor1Button);
             }
         });
 
@@ -104,6 +108,10 @@ public class MapActivity extends BaseActivity
             public void onClick(View view) {
                 mMapFragment.showAllFloors(false);
                 mMapFragment.showMarkersForSpecificFloor(0);
+                mFloor1Button.setBackgroundColor(getColor(android.R.color.darker_gray));
+                ResetColorButton(mFloorAllButton);
+                ResetColorButton(mFloor3Button);
+                ResetColorButton(mFloor2Button);
             }
         });
 
@@ -112,6 +120,10 @@ public class MapActivity extends BaseActivity
             public void onClick(View view) {
                 mMapFragment.showAllFloors(false);
                 mMapFragment.showMarkersForSpecificFloor(1);
+                mFloor2Button.setBackgroundColor(getColor(android.R.color.darker_gray));
+                ResetColorButton(mFloorAllButton);
+                ResetColorButton(mFloor3Button);
+                ResetColorButton(mFloor1Button);
 
             }
         });
@@ -121,6 +133,10 @@ public class MapActivity extends BaseActivity
             public void onClick(View view) {
                 mMapFragment.showAllFloors(false);
                 mMapFragment.showMarkersForSpecificFloor(2);
+                mFloor3Button.setBackgroundColor(getColor(R.color.jz_darkred));
+                ResetColorButton(mFloorAllButton);
+                ResetColorButton(mFloor2Button);
+                ResetColorButton(mFloor1Button);
 
             }
         });
@@ -133,6 +149,9 @@ public class MapActivity extends BaseActivity
         overridePendingTransition(0, 0);
     }
 
+    private void ResetColorButton(Button button) {
+        mFloorAllButton.setBackgroundColor(getColor(R.color.jz_yellow));
+    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
