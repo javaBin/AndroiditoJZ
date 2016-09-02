@@ -560,7 +560,9 @@ public class JZSessionHandler extends JSONHandler {
                         .withValue(ScheduleContract.Speakers.SPEAKER_ID, speaker.href.toString())
                         .withValue(ScheduleContract.Speakers.SPEAKER_NAME, speaker.getValue("name"))
                         .withValue(ScheduleContract.Speakers.SPEAKER_ABSTRACT, speaker.getValue("bio"))
-                        .withValue(ScheduleContract.Speakers.SPEAKER_IMAGE_URL, speaker.getLinkHref("photo"))
+                        .withValue( // Use photo and fallback to (gravatar) thumbnail
+                                ScheduleContract.Speakers.SPEAKER_IMAGE_URL,
+                                speaker.getLinkHref("photo") != null ? speaker.getLinkHref("photo") : speaker.getLinkHref("thumbnail") )
                         .withValue(ScheduleContract.Speakers.SPEAKER_URL, "")//TODO
                         .build());
             }
