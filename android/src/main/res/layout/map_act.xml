@@ -61,19 +61,12 @@ of the map.-->
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal">
-                <TextView
-                    android:layout_width="@dimen/button_size"
-                    android:layout_height="wrap_content"
-                    style="@style/TextSmall"
-                    android:textColor="@color/jz_orange"
-                    android:textStyle="bold"
-                    android:text="Floor"/>
                 <Button
                     android:id="@+id/allfloors_button"
                     style="@style/GeneralButtonStyle"
                     android:layout_width="@dimen/button_size"
                     android:layout_height="wrap_content"
-                    android:text="All" />
+                    android:text="All Floors" />
 
                 <Button
                     android:id="@+id/floor1_button"
