@@ -48,7 +48,7 @@ public class JzVideoLibraryFragment extends Fragment {
         mVimeoWebView.getSettings().setDomStorageEnabled(true);
         mVimeoWebView.setWebViewClient(new VimeoVideoWebViewClient());
 
-        if (NetworkUtils.checkInternetConnection(getContext())) {
+        if (NetworkUtils.checkInternetConnection(getActivity())) {
             if (savedInstanceState == null) {
                 mVimeoWebView.loadUrl(VIMEO_WEB_URL);
             } else {
