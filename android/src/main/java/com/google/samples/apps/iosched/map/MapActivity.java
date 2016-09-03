@@ -59,6 +59,9 @@ public class MapActivity extends BaseActivity
 
     public static final String BUNDLE_STATE_MAPVIEW = "mapview";
 
+    public static final int DEFAULT_BUTTON_COLOR = R.color.jz_yellow;
+    public static final int DEFAULT_BUTTON_SELECTED_COLOR = android.R.color.darker_gray;
+
     private boolean mDetachedMode;
 
     private MapFragment mMapFragment;
@@ -96,7 +99,7 @@ public class MapActivity extends BaseActivity
             @Override
             public void onClick(View view) {
                 mMapFragment.showAllFloors(true);
-                mFloorAllButton.setBackgroundColor(getColor(android.R.color.darker_gray));
+                mFloorAllButton.setBackgroundColor(getColor(DEFAULT_BUTTON_SELECTED_COLOR));
                 ResetColorButton(mFloor3Button);
                 ResetColorButton(mFloor2Button);
                 ResetColorButton(mFloor1Button);
@@ -108,7 +111,7 @@ public class MapActivity extends BaseActivity
             public void onClick(View view) {
                 mMapFragment.showAllFloors(false);
                 mMapFragment.showMarkersForSpecificFloor(0);
-                mFloor1Button.setBackgroundColor(getColor(android.R.color.darker_gray));
+                mFloor1Button.setBackgroundColor(getColor(DEFAULT_BUTTON_SELECTED_COLOR));
                 ResetColorButton(mFloorAllButton);
                 ResetColorButton(mFloor3Button);
                 ResetColorButton(mFloor2Button);
@@ -120,7 +123,7 @@ public class MapActivity extends BaseActivity
             public void onClick(View view) {
                 mMapFragment.showAllFloors(false);
                 mMapFragment.showMarkersForSpecificFloor(1);
-                mFloor2Button.setBackgroundColor(getColor(android.R.color.darker_gray));
+                mFloor2Button.setBackgroundColor(getColor(DEFAULT_BUTTON_SELECTED_COLOR));
                 ResetColorButton(mFloorAllButton);
                 ResetColorButton(mFloor3Button);
                 ResetColorButton(mFloor1Button);
@@ -133,7 +136,7 @@ public class MapActivity extends BaseActivity
             public void onClick(View view) {
                 mMapFragment.showAllFloors(false);
                 mMapFragment.showMarkersForSpecificFloor(2);
-                mFloor3Button.setBackgroundColor(getColor(android.R.color.darker_gray));
+                mFloor3Button.setBackgroundColor(getColor(DEFAULT_BUTTON_SELECTED_COLOR));
                 ResetColorButton(mFloorAllButton);
                 ResetColorButton(mFloor2Button);
                 ResetColorButton(mFloor1Button);
@@ -150,7 +153,7 @@ public class MapActivity extends BaseActivity
     }
 
     private void ResetColorButton(Button button) {
-        button.setBackgroundColor(getColor(R.color.jz_yellow));
+        button.setBackgroundColor(getColor(DEFAULT_BUTTON_COLOR));
     }
 
     @Override
