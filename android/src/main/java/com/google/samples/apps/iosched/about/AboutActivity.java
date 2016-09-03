@@ -43,17 +43,8 @@ public class AboutActivity extends BaseActivity {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.about_terms:
-                    openUrl(URL_TERMS);
-                    break;
-                case R.id.about_privacy_policy:
-                    openUrl(URL_PRIVACY_POLICY);
-                    break;
                 case R.id.about_licenses:
                     AboutUtils.showOpenSourceLicenses(AboutActivity.this);
-                    break;
-                case R.id.about_eula:
-                    AboutUtils.showEula(AboutActivity.this);
                     break;
             }
         }
@@ -67,10 +58,10 @@ public class AboutActivity extends BaseActivity {
 
         TextView body = (TextView) rootView.findViewById(R.id.about_main);
         body.setText(Html.fromHtml(getString(R.string.about_main, BuildConfig.VERSION_NAME)));
-        rootView.findViewById(R.id.about_terms).setOnClickListener(mOnClickListener);
-        rootView.findViewById(R.id.about_privacy_policy).setOnClickListener(mOnClickListener);
+        //rootView.findViewById(R.id.about_terms).setOnClickListener(mOnClickListener);
+        //rootView.findViewById(R.id.about_privacy_policy).setOnClickListener(mOnClickListener);
         rootView.findViewById(R.id.about_licenses).setOnClickListener(mOnClickListener);
-        rootView.findViewById(R.id.about_eula).setOnClickListener(mOnClickListener);
+        //rootView.findViewById(R.id.about_eula).setOnClickListener(mOnClickListener);
 
         overridePendingTransition(0, 0);
     }

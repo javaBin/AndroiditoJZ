@@ -51,32 +51,11 @@
                 tools:text="@string/about_main" />
 
             <TextView
-                android:id="@+id/about_terms"
-                style="@style/AboutLink"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/about_terms" />
-
-            <TextView
-                android:id="@+id/about_privacy_policy"
-                style="@style/AboutLink"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/about_privacy_policy" />
-
-            <TextView
                 android:id="@+id/about_licenses"
                 style="@style/AboutLink"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/about_licenses" />
-
-            <TextView
-                android:id="@+id/about_eula"
-                style="@style/AboutLink"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/about_eula" />
 
         </LinearLayout>
 
