@@ -508,6 +508,10 @@
         <item name="android:textColor">@color/text_secondary</item>
     </style>
 
+    <style name="TextXtraMicro" parent="FontCondensed">
+        <item name="android:textSize">@dimen/text_size_xtra_micro</item>
+    </style>
+
     <style name="TextMicro" parent="FontCondensed">
         <item name="android:textSize">@dimen/text_size_micro</item>
     </style>

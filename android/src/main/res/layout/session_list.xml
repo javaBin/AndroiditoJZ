@@ -4,7 +4,7 @@
     xmlns:iosched="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:tool="http://schemas.android.com/tools"
     android:background="?android:selectableItemBackground"
     android:clickable="true">
@@ -21,14 +21,15 @@
 
             <TextView
                 android:id="@+id/session_start"
-                style="@style/TextAppearance.AppCompat"
+                style="@style/TextSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="10:20" />
 
             <TextView
                 android:id="@+id/session_end"
-                style="@style/TextAppearance.AppCompat.Small"
+                style="@style/TextSmall"
+                android:textColor="@color/secondaryText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="20:20" />
@@ -40,37 +41,34 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/session_schedule_start">
 
-            <FrameLayout
+            <refractored.controls.CircleImageView
+                android:id="@+id/speaker_image"
+                android:layout_width="@dimen/circle_image_small_size"
+                android:layout_height="@dimen/circle_image_small_size"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/small_margin"
+                android:layout_toRightOf="@id/session_schedule_start"
+                android:scaleType="centerCrop"
+                android:src="@drawable/person_image_empty" />
+
+            <TextView
+                android:id="@+id/session_speaker_count"
+                style="@style/TextXtraMicro"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <refractored.controls.CircleImageView
-                    android:id="@+id/speaker_image"
-                    android:layout_width="@dimen/circle_image_small_size"
-                    android:layout_height="@dimen/circle_image_small_size"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/keyline_1"
-                    android:layout_toRightOf="@id/session_schedule_start"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/person_image_empty" />
-
-
-                <TextView
-                    android:id="@+id/session_speaker_count"
-                    style="@style/TextSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right|bottom"
-                    android:background="@drawable/circle_mask"
-                    android:padding="5dp"
-                    android:textColor="@color/text_inverse"
-                    tools:text="20" />
-            </FrameLayout>
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginLeft="-16dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/circle_mask"
+                android:padding="5dp"
+                android:textColor="@color/text_inverse"
+                tools:text="20" />
 
             <LinearLayout
                 android:id="@+id/session_info_layout"
-                android:layout_width="@dimen/session_info"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_margin"
                 android:layout_marginLeft="@dimen/default_margin"
                 android:orientation="vertical">
                 <TextView
@@ -78,7 +76,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:fontFamily="@string/font_fontFamily_medium"
                     android:foregroundGravity="left"
                     android:maxLines="1"
                     android:singleLine="true"
@@ -92,17 +89,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:fontFamily="@string/font_fontFamily_medium"
                     android:maxLines="1"
                     android:text="Speakers, Speakers2, Speakers3"
-                    style="@style/TextSmall"/>
+                    style="@style/TextSmall" />
 
                 <TextView
                     android:id="@+id/session_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Storsalen"
-                    style="@style/TextSmall"/>
+                    style="@style/TextMicro" />
 
             </LinearLayout>
         </LinearLayout>
@@ -121,23 +117,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:background="@color/jz_yellow"
+            android:layout_gravity="right|bottom"
             android:layout_marginRight="@dimen/default_margin"
             android:layout_toRightOf="@id/layout_info"
             android:layout_below="@+id/session_favorite"
-            android:layout_marginTop="@dimen/small_margin"
-            android:background="@color/primary">
+            android:layout_marginTop="@dimen/default_margin">
 
             <TextView
                 android:id="@+id/category_name"
                 style="@style/TextSmall"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
-                android:padding="@dimen/small_margin"
-                android:text="Anddsfsdfsdsdffsdfdfdsfdsroid" />
+
+                android:padding="@dimen/small_margin" />
         </LinearLayout>
 
     </RelativeLayout>
+
 </FrameLayout>

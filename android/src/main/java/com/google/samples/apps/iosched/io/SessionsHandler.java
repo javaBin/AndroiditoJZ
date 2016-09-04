@@ -479,7 +479,7 @@ public class SessionsHandler extends JSONHandler {
                         .withValue(ScheduleContract.Sessions.SESSION_FORMAT, event.format)
                         // .withValue(ScheduleContract.Sessions.SESSION_SPEAKER_NAMES, speakerNames)
                         .withValue(ScheduleContract.Sessions.SESSION_KEYWORDS, null)             // Not available
-                        .withValue(ScheduleContract.Sessions.SESSION_URL, String.valueOf(event.sessionHtmlUrl))
+                        .withValue(ScheduleContract.Sessions.SESSION_URL, String.valueOf(event.Permalink))
                         .withValue(ScheduleContract.Sessions.SESSION_LIVESTREAM_ID, "")
                         .withValue(ScheduleContract.Sessions.SESSION_MODERATOR_URL, null)    // Not available
                         .withValue(ScheduleContract.Sessions.SESSION_REQUIREMENTS, null)     // Not available

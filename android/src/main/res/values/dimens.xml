@@ -32,7 +32,7 @@
 
 
     <!-- Legger til  for å øke størrelsen -->
-    <dimen name="text_size_micro">14sp</dimen>
+    <dimen name="text_size_micro">8sp</dimen>
 
     <!-- line spacing -->
     <item name="body_1_spacing" format="float" type="dimen">1.22448979592</item>
@@ -289,6 +289,7 @@
 
     <dimen name="register_damage_symbol_size">96dp</dimen>
     <dimen name="register_damage_symbol_margin">42dp</dimen>
+    <dimen name="text_size_xtra_micro">10sp</dimen>
 
     <!--
         Material Design Typography Scale
@@ -309,7 +310,7 @@
     <dimen name="extra_button_padding">16dp</dimen>
     <dimen name= "icon_size">24dp</dimen>
     <dimen name="button_size">65dp</dimen>
-    <dimen name="session_info">180dp</dimen>
+    <dimen name="session_info">210dp</dimen>
 
 
 </resources>

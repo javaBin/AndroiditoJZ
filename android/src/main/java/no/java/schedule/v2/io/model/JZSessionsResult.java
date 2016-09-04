@@ -16,7 +16,12 @@
 
 package no.java.schedule.v2.io.model;
 
+import android.net.Uri;
+
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -33,7 +38,7 @@ public class JZSessionsResult {
   public String room;
 
   public URI selfUri;
-  public URI sessionHtmlUrl;
+  public URI Permalink;
 
   public Set<String> speakers;
 
@@ -80,10 +85,20 @@ public class JZSessionsResult {
     session.state = pItem.getValue("state");
     session.level = new JZLevel(pItem.getValue("level"));
     session.room = pItem.getLinkHref("room item");
-    session.selfUri = pItem.href;
-    //session.sessionHtmlUrl // TODO
     session.speakerList.addAll(pItem.getLinkHrefList("speaker item"));
     session.title = pItem.getValue("title");
+
+    session.selfUri = pItem.href;
+    try {
+      session.Permalink = new URL(pItem.getLinkHref("alternate")).toURI();
+    } catch (URISyntaxException e) {
+
+    } catch (MalformedURLException e) {
+
+    }
+    finally {
+
+    }
 
     return session;
 
