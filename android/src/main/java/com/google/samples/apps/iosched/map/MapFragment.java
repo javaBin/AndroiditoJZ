@@ -771,19 +771,19 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
             }
 
             LatLngBounds osloSpektrumLatLngBounds = new LatLngBounds(
-                    new LatLng(59.91248733954981, 10.753536779098567),       // South west corner
-                    new LatLng(59.9135416490492, 10.755773347221407));      // North east corner
+                    new LatLng(59.91245775721807, 10.753627974205074),       // South west corner
+                    new LatLng(59.91353895983281, 10.755966466270479));      // North east corner
 
             GroundOverlayOptions osloSpektrumLevel0 = new GroundOverlayOptions()
-                    .image(BitmapDescriptorFactory.fromResource(R.drawable.level0))
+                    .image(BitmapDescriptorFactory.fromResource(R.drawable.oslospektrum_level0))
                     .positionFromBounds(osloSpektrumLatLngBounds);
 
             GroundOverlayOptions osloSpektrumLevel1 = new GroundOverlayOptions()
-                    .image(BitmapDescriptorFactory.fromResource(R.drawable.level1))
+                    .image(BitmapDescriptorFactory.fromResource(R.drawable.oslospektrum_level1))
                     .positionFromBounds(osloSpektrumLatLngBounds);
 
             GroundOverlayOptions osloSpektrumLevel2 = new GroundOverlayOptions()
-                    .image(BitmapDescriptorFactory.fromResource(R.drawable.level2))
+                    .image(BitmapDescriptorFactory.fromResource(R.drawable.oslospektrum_level2))
                     .positionFromBounds(osloSpektrumLatLngBounds);
 
             mGroundOverlays.add(mMap.addGroundOverlay(osloSpektrumLevel0));

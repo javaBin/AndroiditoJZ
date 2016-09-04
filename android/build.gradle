@@ -36,8 +36,8 @@ android {
 
     defaultConfig {
         applicationId "no.java.schedule.v2"
-        versionCode 61
-        versionName "2016.6"
+        versionCode 62
+        versionName "2016.7"
         minSdkVersion 20
         targetSdkVersion 24
 
