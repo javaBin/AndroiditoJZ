@@ -43,7 +43,7 @@
         "latitude": 59.91307365533729,
         "longitude": 10.755261182785034
       },
-      "major": 12345
+      "major": 8136
     },
     {
       "name": "Room 5",
@@ -54,7 +54,7 @@
         "latitude": 59.91319467155513,
         "longitude": 10.754209756851196
       },
-      "major": 12345
+      "major": 14282
     },
     {
       "name": "Room 6",
@@ -65,7 +65,7 @@
         "latitude": 59.91282624303009,
         "longitude": 10.754241943359375
       },
-      "major": 12345
+      "major": 45767
     },
     {
       "name": "Room 7",
@@ -76,7 +76,7 @@
         "latitude": 59.91273211829857,
         "longitude": 10.754810571670532
       },
-      "major": 12345
+      "major": 47589
     },
     {
       "name": "Room 8",
@@ -87,7 +87,7 @@
         "latitude": 59.91336140428819,
         "longitude": 10.754343867301941
       },
-      "major": 12345
+      "major": 58983
     },
     {
       "name": "Region javaBin",
@@ -98,7 +98,7 @@
         "latitude": 59.91295801720584,
         "longitude": 10.754751563072205
       },
-      "major": 12345
+      "major": 4577
     },
     {
       "name": "Region Main Entrance",
@@ -109,7 +109,7 @@
         "latitude": 59.912963395732504,
         "longitude": 10.755733251571655
       },
-      "major": 12345
+      "major": 23797
     }
   ]
 }
