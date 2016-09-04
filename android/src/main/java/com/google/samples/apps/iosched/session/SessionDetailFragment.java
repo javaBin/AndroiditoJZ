@@ -220,6 +220,9 @@ public class SessionDetailFragment extends Fragment
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.menu_map_room:
+                sendUserAction(SessionDetailUserActionEnum.SHOW_MAP, null);
+                return true;
             case R.id.menu_share:
                 sendUserAction(SessionDetailUserActionEnum.SHOW_SHARE, null);
                 return true;

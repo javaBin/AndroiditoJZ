@@ -1,6 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</LinearLayout>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:iosched="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:background="?android:selectableItemBackground"
+    android:clickable="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/session_schedule_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/session_start"
+                style="@style/TextAppearance.AppCompat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="10:20" />
+
+            <TextView
+                android:id="@+id/session_end"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="20:20" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/session_schedule_start">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <refractored.controls.CircleImageView
+                    android:id="@+id/speaker_image"
+                    android:layout_width="@dimen/circle_image_small_size"
+                    android:layout_height="@dimen/circle_image_small_size"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/keyline_1"
+                    android:layout_toRightOf="@id/session_schedule_start"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/person_image_empty" />
+
+
+                <TextView
+                    android:id="@+id/session_speaker_count"
+                    style="@style/TextSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|bottom"
+                    android:background="@drawable/circle_mask"
+                    android:padding="5dp"
+                    android:textColor="@color/text_inverse"
+                    tools:text="20" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/session_info_layout"
+                android:layout_width="@dimen/session_info"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/session_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:fontFamily="@string/font_fontFamily_medium"
+                    android:foregroundGravity="left"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:textColor="@color/body_text_1"
+                    style="@style/TextNormal"
+                    tools:text="Morten Bergfdasfewrfasdffmann" />
+
+                <TextView
+                    android:id="@+id/speaker_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@string/font_fontFamily_medium"
+                    android:maxLines="1"
+                    android:text="Speakers, Speakers2, Speakers3"
+                    style="@style/TextSmall"/>
+
+                <TextView
+                    android:id="@+id/session_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Storsalen"
+                    style="@style/TextSmall"/>
+
+            </LinearLayout>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/session_favorite"
+            android:layout_width="@dimen/image_size"
+            android:layout_height="@dimen/image_size"
+            android:adjustViewBounds="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/default_margin"
+            android:src="@drawable/ic_stat_notification"
+            android:layout_alignParentTop="true" />
+
+        <LinearLayout
+            android:id="@+id/category_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="@dimen/default_margin"
+            android:layout_toRightOf="@id/layout_info"
+            android:layout_below="@+id/session_favorite"
+            android:layout_marginTop="@dimen/small_margin"
+            android:background="@color/primary">
+
+            <TextView
+                android:id="@+id/category_name"
+                style="@style/TextSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="@dimen/small_margin"
+                android:text="Anddsfsdfsdsdffsdfdfdsfdsroid" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</FrameLayout>

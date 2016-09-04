@@ -24,6 +24,7 @@ import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.GroundOverlay;
 import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.IndoorBuilding;
 import com.google.android.gms.maps.model.LatLng;
@@ -103,6 +104,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
 
     // Markers stored by id
     private HashMap<String, MarkerModel> mMarkers = new HashMap<>();
+    private ArrayList<GroundOverlay> mGroundOverlays = new ArrayList<>();
     // Markers stored by floor
     private SparseArray<ArrayList<Marker>> mFloorMarkerMapping =
             new SparseArray<>(INITIAL_FLOOR_COUNT);
@@ -283,7 +285,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
             mEstimoteBeaconManager.startMonitorEstimoteBeacons(getActivity());
         }
 
-        if(mFloorIcons.isEmpty()) {
+        if (mFloorIcons.isEmpty()) {
             for (int i = 0; i < mNumberFloors; i++) {
                 mFloorIcons.add(BitmapDescriptorFactory
                         .defaultMarker(MapUtils.createFloorColor(i)));
@@ -466,15 +468,6 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
         if (resetCamera) {
             centerOnOsloSpektrum(false);
         }
-
-        LatLngBounds osloSpektrumLatLngBounds = new LatLngBounds(
-                new LatLng(59.91248733954981, 10.753536779098567),       // South west corner
-                new LatLng(59.9135416490492, 10.755773347221407));      // North east corner
-
-        GroundOverlayOptions newarkMap = new GroundOverlayOptions()
-                .image(BitmapDescriptorFactory.fromResource(R.drawable.level0))
-                .positionFromBounds(osloSpektrumLatLngBounds);
-        mMap.addGroundOverlay(newarkMap);
     }
 
     @Override
@@ -572,7 +565,10 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
      * Change the visibility of all Markers and TileOverlays for a floor.
      */
     private void setFloorElementsVisible(int floor, boolean visible) {
-        // Markers
+        if (mFloor == INVALID_FLOOR) {
+            showMarkersForAllFloors(true);
+            return;
+        }
 
         final ArrayList<Marker> markers = mFloorMarkerMapping.get(floor);
         if (markers != null) {
@@ -606,6 +602,9 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
             showMarkersForAllFloors(false);
             setFloorElementsVisible(mHighlightedRoom.floor, true);
             selectActiveMarker(mHighlightedRoom.marker);
+            mCallbacks.onInfoShowFirstSessionTitle(mHighlightedRoom.id,
+                    mHighlightedRoom.label,
+                    mHighlightedRoom.type);
             // Reset highlighted room because it has just been displayed.
             mHighlightedRoomName = null;
         }
@@ -675,7 +674,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
         }
     }
 
-        private void selectActiveMarker(Marker marker) {
+    private void selectActiveMarker(Marker marker) {
         if (marker != null) {
             mActiveMarker = mMap.addMarker(MapUtils.createFloorMarkers("selected", mFloor, marker.getPosition()).visible(true));
             mActiveMarker.setIcon(ICON_ACTIVE);
@@ -766,6 +765,35 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
             }
 
             onFocusHighlightedRoom();
+
+            if (mHighlightedRoomName == null) {
+                ((MapActivity) getActivity()).mFloorAllButton.callOnClick();
+            }
+
+            LatLngBounds osloSpektrumLatLngBounds = new LatLngBounds(
+                    new LatLng(59.91248733954981, 10.753536779098567),       // South west corner
+                    new LatLng(59.9135416490492, 10.755773347221407));      // North east corner
+
+            GroundOverlayOptions osloSpektrumLevel0 = new GroundOverlayOptions()
+                    .image(BitmapDescriptorFactory.fromResource(R.drawable.level0))
+                    .positionFromBounds(osloSpektrumLatLngBounds);
+
+            GroundOverlayOptions osloSpektrumLevel1 = new GroundOverlayOptions()
+                    .image(BitmapDescriptorFactory.fromResource(R.drawable.level1))
+                    .positionFromBounds(osloSpektrumLatLngBounds);
+
+            GroundOverlayOptions osloSpektrumLevel2 = new GroundOverlayOptions()
+                    .image(BitmapDescriptorFactory.fromResource(R.drawable.level2))
+                    .positionFromBounds(osloSpektrumLatLngBounds);
+
+            mGroundOverlays.add(mMap.addGroundOverlay(osloSpektrumLevel0));
+            mGroundOverlays.add(mMap.addGroundOverlay(osloSpektrumLevel1));
+            mGroundOverlays.add(mMap.addGroundOverlay(osloSpektrumLevel2));
+
+            mGroundOverlays.get(0).setVisible(true);
+            for(int i = 1; i < mGroundOverlays.size(); i++) {
+                mGroundOverlays.get(i).setVisible(false);
+            }
         }
 
         enableMapElements();
@@ -780,15 +808,29 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
         if (mFloor == floorLevel) {
             return;
         }
+
+        mFloor = floorLevel;
+
         if (mMap != null) {
             hideMarkersWhenSwitchingFloors();
         }
 
-        mFloor = floorLevel;
         mCallbacks.onInfoHide();
         deselectActiveMarker();
         setFloorElementsVisible(mFloor, true);
 
+        showGroundOverlay(floorLevel);
+    }
+
+    public void showGroundOverlay(int floorLevel) {
+        for (int i = 0; i < mGroundOverlays.size(); i++) {
+            if (i == floorLevel) {
+                mGroundOverlays.get(i).setVisible(true);
+                continue;
+            }
+
+            mGroundOverlays.get(i).setVisible(false);
+        }
     }
 
     private final ContentObserver mObserver = new ContentObserver(new Handler()) {
