@@ -328,7 +328,8 @@ public class MyScheduleAdapter implements ListAdapter, AbsListView.RecyclerListe
                 holder.description.setTextColor(mColorConflict);
                 setUriClickable(holder.touchArea, sessionUri);
             } else {
-                holder.startTime.setVisibility(View.VISIBLE);
+                //holder.startTime.setVisibility(View.VISIBLE);
+                holder.startTime.setVisibility(View.GONE);
                 setUriClickable(holder.startTime,
                         ScheduleContract.Sessions.buildUnscheduledSessionsInInterval(
                                 item.startTime, item.endTime));
