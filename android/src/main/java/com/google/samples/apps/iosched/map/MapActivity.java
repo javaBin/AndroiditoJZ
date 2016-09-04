@@ -68,9 +68,9 @@ public class MapActivity extends BaseActivity
 
     private MapInfoFragment mInfoFragment;
 
-    private Button mFloor1Button;
-    private Button mFloor2Button;
-    private Button mFloor3Button;
+    public Button mFloor1Button;
+    public Button mFloor2Button;
+    public Button mFloor3Button;
     public Button mFloorAllButton;
 
     private View mInfoContainer;

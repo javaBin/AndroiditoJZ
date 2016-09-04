@@ -767,7 +767,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
             onFocusHighlightedRoom();
 
             if (mHighlightedRoomName == null) {
-                ((MapActivity) getActivity()).mFloorAllButton.callOnClick();
+                ((MapActivity) getActivity()).mFloor1Button.callOnClick();
             }
 
             LatLngBounds osloSpektrumLatLngBounds = new LatLngBounds(
