@@ -25,6 +25,7 @@ import com.google.samples.apps.iosched.util.AnalyticsHelper;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -99,7 +100,7 @@ public class MapActivity extends BaseActivity
             @Override
             public void onClick(View view) {
                 mMapFragment.showAllFloors(true);
-                mFloorAllButton.setBackgroundColor(getColor(DEFAULT_BUTTON_SELECTED_COLOR));
+                mFloorAllButton.setBackgroundColor(ContextCompat.getColor(MapActivity.this, DEFAULT_BUTTON_SELECTED_COLOR));
                 ResetColorButton(mFloor3Button);
                 ResetColorButton(mFloor2Button);
                 ResetColorButton(mFloor1Button);
@@ -111,7 +112,7 @@ public class MapActivity extends BaseActivity
             public void onClick(View view) {
                 mMapFragment.showAllFloors(false);
                 mMapFragment.showMarkersForSpecificFloor(0);
-                mFloor1Button.setBackgroundColor(getColor(DEFAULT_BUTTON_SELECTED_COLOR));
+                mFloor1Button.setBackgroundColor(ContextCompat.getColor(MapActivity.this, DEFAULT_BUTTON_SELECTED_COLOR));
                 ResetColorButton(mFloorAllButton);
                 ResetColorButton(mFloor3Button);
                 ResetColorButton(mFloor2Button);
@@ -123,7 +124,7 @@ public class MapActivity extends BaseActivity
             public void onClick(View view) {
                 mMapFragment.showAllFloors(false);
                 mMapFragment.showMarkersForSpecificFloor(1);
-                mFloor2Button.setBackgroundColor(getColor(DEFAULT_BUTTON_SELECTED_COLOR));
+                mFloor2Button.setBackgroundColor(ContextCompat.getColor(MapActivity.this, DEFAULT_BUTTON_SELECTED_COLOR));
                 ResetColorButton(mFloorAllButton);
                 ResetColorButton(mFloor3Button);
                 ResetColorButton(mFloor1Button);
@@ -136,7 +137,7 @@ public class MapActivity extends BaseActivity
             public void onClick(View view) {
                 mMapFragment.showAllFloors(false);
                 mMapFragment.showMarkersForSpecificFloor(2);
-                mFloor3Button.setBackgroundColor(getColor(DEFAULT_BUTTON_SELECTED_COLOR));
+                mFloor3Button.setBackgroundColor(ContextCompat.getColor(MapActivity.this, DEFAULT_BUTTON_SELECTED_COLOR));
                 ResetColorButton(mFloorAllButton);
                 ResetColorButton(mFloor2Button);
                 ResetColorButton(mFloor1Button);
@@ -153,7 +154,7 @@ public class MapActivity extends BaseActivity
     }
 
     private void ResetColorButton(Button button) {
-        button.setBackgroundColor(getColor(DEFAULT_BUTTON_COLOR));
+        button.setBackgroundColor(ContextCompat.getColor(MapActivity.this, DEFAULT_BUTTON_COLOR));
     }
 
     @Override
