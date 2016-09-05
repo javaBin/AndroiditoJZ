@@ -5,10 +5,10 @@
       "name": "Room 1",
       "level" : 0,
       "type" : "session",
-      "description": "Room 1",
+      "description": "Room 1 (floor 0)",
       "coordinates": {
-        "latitude": 59.91326728107407,
-        "longitude": 10.754424333572388
+        "latitude": 59.91328879497513,
+        "longitude": 10.754499435424805
       },
       "major": 14441
     },
@@ -16,10 +16,10 @@
       "name": "Room 2",
       "level" : 0,
       "type" : "session",
-      "description": "Room 2",
+      "description": "Room 2 (floor 0)",
       "coordinates": {
-        "latitude": 59.912761700385815,
-        "longitude": 10.7541024684906
+        "latitude": 59.91281817520641,
+        "longitude": 10.754032731056213
       },
       "major": 36049
     },
@@ -27,10 +27,10 @@
       "name": "Room 3",
       "level" : 0,
       "type" : "session",
-      "description": "Room 3",
+      "description": "Room 3 (floor 0)",
       "coordinates": {
-        "latitude": 59.91310054786828,
-        "longitude": 10.755486488342285
+        "latitude": 59.91318122533049,
+        "longitude": 10.75537919998169
       },
       "major": 61068
     },
@@ -38,10 +38,10 @@
       "name": "Room 4",
       "level" : 1,
       "type" : "session",
-      "description": "Room 4",
+      "description": "Room 4 (floor 1)",
       "coordinates": {
-        "latitude": 59.91307365533729,
-        "longitude": 10.755261182785034
+        "latitude": 59.91321887474575,
+        "longitude": 10.755271911621094
       },
       "major": 8136
     },
@@ -49,10 +49,10 @@
       "name": "Room 5",
       "level" : 1,
       "type" : "session",
-      "description": "Room 5",
+      "description": "Room 5 (floor 1)",
       "coordinates": {
-        "latitude": 59.91319467155513,
-        "longitude": 10.754209756851196
+        "latitude": 59.91316777910043,
+        "longitude": 10.754247307777405
       },
       "major": 14282
     },
@@ -60,10 +60,10 @@
       "name": "Room 6",
       "level" : 1,
       "type" : "session",
-      "description": "Room 6",
+      "description": "Room 6 (floor 1)",
       "coordinates": {
-        "latitude": 59.91282624303009,
-        "longitude": 10.754241943359375
+        "latitude": 59.91286927138992,
+        "longitude": 10.754064917564392
       },
       "major": 45767
     },
@@ -71,10 +71,10 @@
       "name": "Room 7",
       "level" : 2,
       "type" : "session",
-      "description": "Room 7",
+      "description": "Room 7 (floor 2)",
       "coordinates": {
-        "latitude": 59.91273211829857,
-        "longitude": 10.754810571670532
+        "latitude": 59.91281279665619,
+        "longitude": 10.755169987678528
       },
       "major": 47589
     },
@@ -82,7 +82,7 @@
       "name": "Room 8",
       "level" : 2,
       "type" : "session",
-      "description": "Room 8",
+      "description": "Room 8 (floor 2)",
       "coordinates": {
         "latitude": 59.91336140428819,
         "longitude": 10.754343867301941
@@ -93,10 +93,10 @@
       "name": "Region javaBin",
       "level" : 0,
       "type" : "booth",
-      "description": "javaBin Stand",
+      "description": "javaBin Stand (floor 0)",
       "coordinates": {
-        "latitude": 59.91295801720584,
-        "longitude": 10.754751563072205
+        "latitude": 59.91297146352089,
+        "longitude": 10.754649639129639
       },
       "major": 4577
     },
@@ -104,7 +104,7 @@
       "name": "Region Main Entrance",
       "level" : 1,
       "type" : "booth",
-      "description": "Main Entrance",
+      "description": "Main Entrance (floor 1)",
       "coordinates": {
         "latitude": 59.912963395732504,
         "longitude": 10.755733251571655
