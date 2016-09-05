@@ -241,7 +241,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
         // get DPI
         mDPI = getActivity().getResources().getDisplayMetrics().densityDpi / 160f;
 
-        ICON_ACTIVE = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE);
+        ICON_ACTIVE = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED);
 
 
         // Get the arguments and restore the highlighted room or displayed floor.
