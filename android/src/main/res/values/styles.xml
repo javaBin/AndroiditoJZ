@@ -503,6 +503,10 @@
         <item name="android:textColor">@color/text_main</item>
     </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <style name="TextLabel">
         <item name="android:textSize">@dimen/text_size_medium</item>
         <item name="android:textColor">@color/text_secondary</item>

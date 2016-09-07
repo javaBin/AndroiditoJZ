@@ -33,11 +33,11 @@ repositories {
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
-
+154
     defaultConfig {
         applicationId "no.java.schedule.v2"
-        versionCode 68
-        versionName "2016.13"
+        versionCode 69
+        versionName "2016.14"
         minSdkVersion 20
         targetSdkVersion 24
 

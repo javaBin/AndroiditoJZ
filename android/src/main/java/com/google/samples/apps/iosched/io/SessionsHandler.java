@@ -491,10 +491,7 @@ public class SessionsHandler extends JSONHandler {
                         .withValue(ScheduleContract.Sessions.SESSION_COLOR, color);
 
 
-                long blockStart = snapStartTime(sessionStartTime);
-                long blockEnd = snapEndTime(sessionEndTime);
-
-                String blockId = ScheduleContract.Blocks.generateBlockId(blockStart, blockEnd);
+                String blockId = ScheduleContract.Blocks.generateBlockId(sessionStartTime, sessionEndTime);
                 if (blockId != null && !blockIds.contains(blockId)) { // TODO add support for fetching blocks and inserting
                     String blockType;
                     String blockTitle;
