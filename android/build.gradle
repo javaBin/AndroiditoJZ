@@ -1,4 +1,5 @@
 /*
+/*
  * Copyright 2015 Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,11 +34,11 @@ repositories {
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
-
+    154
     defaultConfig {
         applicationId "no.java.schedule.v2"
-        versionCode 68
-        versionName "2016.13"
+        versionCode 71
+        versionName "2016.16"
         minSdkVersion 20
         targetSdkVersion 24
 
@@ -68,7 +69,7 @@ android {
     }
 
     signingConfigs {
-         debug {
+        debug {
             storeFile file("../debug.keystore")
             storePassword "android"
             keyAlias "javazonedebugkey"
@@ -80,7 +81,7 @@ android {
         debug {
             debuggable true
             minifyEnabled false
-          //  signingConfig signingConfigs.debug
+            //  signingConfig signingConfigs.debug
             buildConfigField("boolean", "ENABLE_DEBUG_TOOLS", "true")
             buildConfigField("String", "SERVER_MANIFEST_ENDPOINT", "\"${production_api_manifest_endpoint}\"")
             buildConfigField("String", "GCM_SERVER_URL", "\"${production_gcm_server_endpoint}\"")
@@ -88,7 +89,7 @@ android {
         }
         qualityassurance {
             debuggable true
-          //  signingConfig signingConfigs.debug
+            //  signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), file('proguard-project.txt')
             buildConfigField("boolean", "ENABLE_DEBUG_TOOLS", "true")
             buildConfigField("String", "SERVER_MANIFEST_ENDPOINT", "\"${production_api_manifest_endpoint}\"")

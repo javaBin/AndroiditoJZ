@@ -26,7 +26,7 @@ public class RestServiceDevNull {
         }
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(endPoint)
+                .baseUrl("http://javazone.no")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(new ToStringConverterFactory())
                 .build();
@@ -62,8 +62,9 @@ public class RestServiceDevNull {
         @Override
         public void onFailure(Call call, Throwable t) {
             Toast.makeText(activity,
-                    "Something went wrong with the connection, please try again later!",
+                    "Thank you for the feedback!",
                     Toast.LENGTH_SHORT).show();
+            activity.finish();
         }
     };
 }
