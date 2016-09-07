@@ -136,7 +136,6 @@ public class TagFilterHolder implements Parcelable {
      * @param show Set a boolean to indicate whether live streamed sessions should be shown
      */
     public void setShowLiveStreamedSessions(boolean show) {
-
         this.mShowLiveStreamedSessions = show;
     }
 

@@ -290,7 +290,6 @@
     <dimen name="register_damage_symbol_size">96dp</dimen>
     <dimen name="register_damage_symbol_margin">42dp</dimen>
     <dimen name="text_size_xtra_micro">10sp</dimen>
-    <dimen name="collapse_toolbar_height">300dp</dimen>
 
     <!--
         Material Design Typography Scale
