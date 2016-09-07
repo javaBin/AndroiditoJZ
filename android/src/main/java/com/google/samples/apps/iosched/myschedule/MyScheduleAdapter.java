@@ -36,6 +36,8 @@ import android.widget.TextView;
 
 import com.google.samples.apps.iosched.Config;
 import no.java.schedule.v2.R;
+import no.java.schedule.v2.io.model.Constants;
+
 import com.google.samples.apps.iosched.feedback.SessionFeedbackActivity;
 import com.google.samples.apps.iosched.model.ScheduleItem;
 import com.google.samples.apps.iosched.provider.ScheduleContract;
@@ -313,6 +315,7 @@ public class MyScheduleAdapter implements ListAdapter, AbsListView.RecyclerListe
                         Intent feedbackIntent = new Intent(Intent.ACTION_VIEW,
                                 ScheduleContract.Sessions.buildSessionUri(item.sessionId),
                                 mContext, SessionFeedbackActivity.class);
+                        feedbackIntent.putExtra(Constants.SESSION_ID, item.sessionId);
                         mContext.startActivity(feedbackIntent);
                     }
                 });
